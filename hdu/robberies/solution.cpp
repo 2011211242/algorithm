@@ -8,11 +8,12 @@ struct {
 }node[100];
 
 int main(){
-    int t;
+    int t = 2;
     scanf("%d", &t);
     while(t--){
         int n, sum = 0;
         double p, dp[10001] = {1.0};
+		printf("%lf %lf %lf", dp[0], dp[1], dp[2]);
         //memset(dp, dp )
 
         scanf("%lf %d", &p, &n);
@@ -29,6 +30,7 @@ int main(){
                 dp[j] = max(dp[j], dp[j - node[i].money] * node[i].p);
             }
         }
+
         int i;
         for(i = sum; dp[i] < p; i--);
         printf("%d\n", i);
