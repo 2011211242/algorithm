@@ -23,7 +23,8 @@ public:
     }
 
     void dfs(string s, vector<string> &parent, 
-            set<string> &st, unsigned long int &len){
+            set<string> &st, unsigned long int &len, 
+            unsigned long &l, unsigned long &r){
         if(s.length() < len || st.find(s) != st.end()) return;
 
         st.insert(s);
@@ -33,11 +34,14 @@ public:
         }
         else{
             for(unsigned long int i = 0; i < s.length(); i++){
-                if(!(s[i] == '(' || s[i] == ')')) continue;
+                if( l > r &&  s[i] == ')') continue;
+                if( l < r &&  s[i] == '(') continue;
 
+                unsigned long nl = l - (s[i] == '(');
+                unsigned long nr = r - (s[i] == ')');
                 string pre = s.substr(0,i);
                 string end = s.substr(i + 1);
-                dfs(pre + end, parent, st, len);
+                dfs(pre + end, parent, st, len, nl, nr);
             }
         }
     }
@@ -47,7 +51,12 @@ public:
         set<string> st;
         vector<string> parents;
         unsigned long len = 0;
-        dfs(s, parents, st, len);
+
+        unsigned long l = 0, r = 0;
+        for(char ch : s) if(ch == '(') l++;
+        for(char ch : s) if(ch == ')') r++;
+
+        dfs(s, parents, st, len, l, r);
         vector<string> ret;
         for(string str : parents)
             if(str.length() == len) ret.push_back(str);
