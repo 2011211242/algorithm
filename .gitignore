@@ -1,1 +1,8 @@
 *.out
+*.so
+*.lib
+*.bin
+*.data
+*.zip
+*.tar.gz
+*.tar
