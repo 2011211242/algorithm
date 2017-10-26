@@ -31,6 +31,7 @@ int main(){
     freopen("test.txt", "r", stdin);
     int n;
     scanf("%d", &n);
+
     vector<vector<unsigned long long int>> p(n, vector<unsigned long long int>(8));
     for(int i = 0; i < n; i++){
         for(int j = 0; j <= 7; j++)
@@ -48,7 +49,7 @@ int main(){
     for(int i = 0; i < n; i++){
         node tmp;
         tmp.val = get_res(p[i], 1);
-        //printf("tmp.val = %d\n", tmp.val);
+        printf("tmp.val = %d\n", tmp.val);
         tmp.idx = i;
         tmp.n = 1;
         que.push(tmp);
@@ -65,5 +66,5 @@ int main(){
     node top_node = que.top();
     unsigned long long int ret = top_node.val;
     printf("%llu\n", ret);
-    //vector<int>
 }
+

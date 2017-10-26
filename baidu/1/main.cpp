@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <vector>
+
 using namespace std;
 #define MAX_L 1000000 
 
@@ -29,6 +30,7 @@ int main(){
     scanf("%d", &n);
     int cnt = 0;
     int ret;
+
     for(int i = 10; i <= 1000000; i++){
         if(dp[i])
         {
@@ -40,6 +42,8 @@ int main(){
         }
         if(cnt >= n) break;
     }
+
     if(cnt == n && ret <= 1000000) printf("%d\n", ret);
     else printf("-1\n");
 }
+
