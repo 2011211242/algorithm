@@ -1,9 +1,11 @@
-CXX=g++
-CXXFLAGS=   -std=c++11 \
-            -g
-            
-a.out:main.cpp
-	$(CXX) $< $(CXXFLAGS) -o $@
-clean:
-	rm -r a.out
-    
+cxxflags = -std=c++11 \
+		   -g
+
+target=a.out
+
+src = $(shell find ./ -name "*.cpp")
+$(target): $(src)
+	g++ $(cxxflags) $^ -o $@
+
+make clean:
+	rm -rf $(target)
