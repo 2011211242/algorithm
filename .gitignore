@@ -1,11 +1,7 @@
+[a-zA-Z0-9]*
+![a-zA-Z0-9]*/
+!*.*
 *.out
+*.a
 *.so
-*.lib
-*.bin
-*.data
-*.zip
-*.tar.gz
-*.tar
-core
-!core/
-*.core
+*.o
