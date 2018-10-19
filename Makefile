@@ -1,5 +1,7 @@
 cxxflags = -std=c++11 \
-		   -g
+		   -g \
+		   -Wall \
+		   -Werror
 
 target=a.out
 
