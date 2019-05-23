@@ -2,10 +2,11 @@
 #include <vector>
 #include <climits>
 #include <assert.h>
+#include <cmath>
 
 using namespace std;
 
-#define LEN 3
+#define LEN 100
 
 double uniform()
 {
@@ -63,28 +64,35 @@ int main() {
 
     vector<double> r_vec;
     init(weights, r_vec);
+    /*
     for(int i = 1; i < r_vec.size(); i++)
     {
         cout << r_vec[i] - r_vec[i - 1] << " ";
     }
     cout << endl;
+    */
 
+    const int FREQ = 10000000;
     vector<double> freq(weights.size(), 0);
-    for(int i = 0; i < 100000000; i++)
+    for(int i = 0; i < FREQ; i++)
     {
         freq[random(r_vec)] += 1;
     }
 
     for(int i = 0; i < weights.size(); i++)
     {
-        freq[i] /= 100000000;
+        freq[i] /= FREQ;
     }
 
+    double Q = 0;
     for(int i = 0; i < freq.size(); i++)
     {
-        cout << freq[i] << " ";
+        cout << r_vec[i + 1] - r_vec[i] << " " << freq[i] << endl;
+        Q += (r_vec[i + 1] - r_vec[i] - freq[i]) * (r_vec[i + 1] - r_vec[i] - freq[i]);
     }
     cout << endl;
+    Q /= freq.size();
+    cout << sqrt(Q) << endl;
 }
 
 

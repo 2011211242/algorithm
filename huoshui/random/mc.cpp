@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
-#define LEN 3
+#define LEN 100
 
 void init(const vector<double>& w, vector<double>& p) {
     double sum = 0.0f;
@@ -30,7 +31,7 @@ unsigned int random(const vector<double>& p_vec) {
 
     unsigned int ret = idx;
     unsigned count = 1;
-    while( p > p_vec[idx] || count < 5) {
+    while( p > p_vec[idx] || count < 2) {
         idx = rand() % p_vec.size();
         p = uniform();
 
@@ -57,11 +58,13 @@ int main() {
 
     vector<double> r_vec;
     init(weights, r_vec);
+    /*
     for(int i = 0; i < r_vec.size(); i++)
     {
         cout << r_vec[i] << " ";
     }
     cout << endl;
+    */
 
     const int FREQ = 10000000;
     vector<double> freq(weights.size(), 0);
@@ -75,10 +78,13 @@ int main() {
         freq[i] /= FREQ;
     }
 
+    double Q = 0;
     for(int i = 0; i < freq.size(); i++)
     {
-        cout << freq[i] << " ";
+        cout << r_vec[i] << " " << freq[i] << endl;
+        Q += (freq[i] - r_vec[i]) * (freq[i] - r_vec[i]);
     }
     cout << endl;
 
+    cout << "loss: " << sqrt(Q / r_vec.size()) << endl;
 }
