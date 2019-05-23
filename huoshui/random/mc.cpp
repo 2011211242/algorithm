@@ -63,7 +63,7 @@ int main() {
     }
     cout << endl;
 
-    const int FREQ = 100000000;
+    const int FREQ = 10000000;
     vector<double> freq(weights.size(), 0);
     for(int i = 0; i < FREQ; i++)
     {
